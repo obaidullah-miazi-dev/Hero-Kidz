@@ -1,4 +1,4 @@
-import { Epilogue, Geist, Geist_Mono, Poppins } from "next/font/google";
+import { Epilogue, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 
@@ -10,7 +10,7 @@ export const epilogue = Epilogue({
   weight: ["500", "600", "800", "900"],
 });
 
-export const metadata = {
+const metadata = {
   title: {
     default: "Hero Kidz - Premium Toys & Gear for Little Heroes",
     template: "%s | Hero Kidz",
