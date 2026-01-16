@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-const Navlinks = ({ href, children }) => {
+const Navlinks = ({ href = "/", children }) => {
   const path = usePathname();
   const isActive = href === "/" ? path === "/" : path.startsWith(href);
   return (
