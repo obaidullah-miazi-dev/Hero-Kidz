@@ -1,9 +1,13 @@
-import { Geist, Geist_Mono, Poppins } from "next/font/google";
+import { Epilogue, Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 
 const poppins = Poppins({
   weight: ["100", "200", "400", "500", "600", "800"],
+});
+
+export const epilogue = Epilogue({
+  weight: ["500", "600", "800", "900"],
 });
 
 export const metadata = {
