@@ -1,10 +1,10 @@
 import React from "react";
-import products from "@/data/toys.json";
 import ProductCard from "@/components/cards/ProductCard";
 import { epilogue } from "../layout";
+import { getProducts } from "@/actions/server/product";
 
 const ProductsPage = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  const products = await getProducts();
 
   return (
     <div className="min-h-screen bg-base-100 py-12 lg:py-20">

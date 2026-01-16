@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { Star, ShoppingCart, Heart, Eye } from "lucide-react";
+import Link from "next/link";
 
 const ProductCard = ({ product }) => {
-  const { title, image, price, discount, ratings, reviews } = product;
+  const { title, image, price, discount, ratings, reviews, _id } = product;
 
   // Calculate discounted price
   const discountedPrice = discount
@@ -74,10 +75,12 @@ const ProductCard = ({ product }) => {
             Add to Cart
           </button>
 
-          <button className="btn btn-primary btn-outline flex-1 rounded-lg shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 group-hover:-translate-y-1 hover:text-white text-sm px-2">
-            <Eye size={16} className="mr-1" />
-            Details
-          </button>
+          <Link href={`/products/${_id}`} className=" flex-1 w-full">
+            <button className="btn btn-primary btn-outline rounded-lg shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 group-hover:-translate-y-1 hover:text-white text-sm px-2 w-full">
+              <Eye size={16} className="mr-1" />
+              Details
+            </button>
+          </Link>
         </div>
       </div>
     </div>
