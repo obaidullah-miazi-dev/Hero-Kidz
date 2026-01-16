@@ -5,6 +5,35 @@ import ProductInfo from "@/components/product-details/ProductInfo";
 import RelatedProducts from "@/components/product-details/RelatedProducts";
 import Link from "next/link";
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const product = await getSingleProduct(id);
+
+  if (!product || !product.title) {
+    return {
+      title: "Product Not Found",
+      description: "The requested product could not be found.",
+    };
+  }
+
+  return {
+    title: product.title,
+    description: product.description?.slice(0, 160) || "Product details",
+    openGraph: {
+      title: `${product.title} | Hero Kidz`,
+      description: product.description?.slice(0, 160) || "Product details",
+      images: [
+        {
+          url: product.image,
+          width: 800,
+          height: 600,
+          alt: product.title,
+        },
+      ],
+    },
+  };
+}
+
 const ProductDetailsPage = async ({ params }) => {
   const { id } = await params;
   const product = await getSingleProduct(id);
