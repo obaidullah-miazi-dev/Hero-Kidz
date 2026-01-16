@@ -15,7 +15,7 @@ const Banner = () => {
       <div className="py-12 lg:py-20">
         <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20">
           {/* Text Content */}
-          <div className="flex-1 text-center lg:text-left space-y-8">
+          <div className="flex-1 text-center lg:text-left space-y-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-medium text-sm animate-fade-in-up">
               <Sparkles size={16} />
               <span>New Collection 2025</span>

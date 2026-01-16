@@ -19,10 +19,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
-        <header className="py-2 md:w-11/12 mx-auto">
+        <header className="py-2 md:w-10/12 mx-auto">
           <Navbar />
         </header>
-        <main className="py-2 md:w-11/12 mx-auto">{children}</main>
+        <main className="py-2 md:w-10/12 mx-auto">{children}</main>
       </body>
     </html>
   );
