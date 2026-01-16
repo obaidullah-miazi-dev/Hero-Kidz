@@ -5,12 +5,13 @@ import React from "react";
 
 const Navlinks = ({ href, children }) => {
   const path = usePathname();
+  const isActive = href === "/" ? path === "/" : path.startsWith(href);
   return (
     <Link
-      className={`font-medium text-lg hover:bg-primary hover:text-white ${
-        path.startsWith(href) && "text-primary"
-      }`}
       href={href}
+      className={`font-medium text-lg hover:bg-primary hover:text-white ${
+        isActive ? "text-primary" : ""
+      }`}
     >
       {children}
     </Link>
