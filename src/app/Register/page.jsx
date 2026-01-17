@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaGoogle, FaGithub } from "react-icons/fa";
+import RegisterForm from "@/components/auth/RegisterForm";
 
 const Register = () => {
   return (
@@ -32,44 +33,7 @@ const Register = () => {
             <p className="text-gray-500">Create your new account</p>
           </div>
 
-          <form className="space-y-6">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text font-medium">Full Name</span>
-              </label>
-              <input
-                type="text"
-                placeholder="John Doe"
-                className="input input-bordered w-full focus:input-primary"
-              />
-            </div>
-
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text font-medium">Email</span>
-              </label>
-              <input
-                type="email"
-                placeholder="email@example.com"
-                className="input input-bordered w-full focus:input-primary"
-              />
-            </div>
-
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text font-medium">Password</span>
-              </label>
-              <input
-                type="password"
-                placeholder="••••••••"
-                className="input input-bordered w-full focus:input-primary"
-              />
-            </div>
-
-            <button className="btn btn-primary w-full text-white text-lg">
-              Register
-            </button>
-          </form>
+          <RegisterForm />
 
           <div className="divider">OR</div>
 
