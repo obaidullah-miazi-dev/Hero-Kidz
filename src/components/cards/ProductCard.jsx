@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Star, ShoppingCart, Heart, Eye } from "lucide-react";
 import Link from "next/link";
+import AddToCart from "../buttons/AddToCart";
 
 const ProductCard = ({ product }) => {
   const { title, image, price, discount, ratings, reviews, _id } = product;
@@ -70,10 +71,7 @@ const ProductCard = ({ product }) => {
 
         {/* Add to Cart Button */}
         <div className="mt-4 flex items-center gap-2">
-          <button className="btn btn-primary flex-1 rounded-lg shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 group-hover:-translate-y-1 text-white text-sm px-2">
-            <ShoppingCart size={16} className="mr-1 text-white" />
-            Add to Cart
-          </button>
+          <AddToCart product={product} />
 
           <Link href={`/products/${_id}`} className=" flex-1 w-full">
             <button className="btn btn-primary btn-outline rounded-lg shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 group-hover:-translate-y-1 hover:text-white text-sm px-2 w-full">

@@ -49,7 +49,7 @@ const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} antialiased`}>
+      <body suppressHydrationWarning className={`${poppins.className} antialiased`}>
         <header className="py-2 md:w-10/12 mx-auto  md:px-0">
           <Navbar />
         </header>

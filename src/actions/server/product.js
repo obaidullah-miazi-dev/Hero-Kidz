@@ -5,15 +5,24 @@ import { ObjectId } from "mongodb";
 
 export const getProducts = async () => {
   const products = await dbConnect(collections.PRODUCTS).find().toArray();
-  return products;
+
+  return products.map((product) => ({
+    ...product,
+    _id: product._id.toString(),
+  }));
 };
 
 export const getSingleProduct = async (id) => {
-  if (id.length !== 24) {
-    return {};
-  }
+  if (!id || id.length !== 24) return null;
 
-  const query = { _id: new ObjectId(id) };
-  const product = await dbConnect(collections.PRODUCTS).findOne(query);
-  return { ...product, _id: product._id.toString() } || {};
+  const product = await dbConnect(collections.PRODUCTS).findOne({
+    _id: new ObjectId(id),
+  });
+
+  if (!product) return null;
+
+  return {
+    ...product,
+    _id: product._id.toString(),
+  };
 };
