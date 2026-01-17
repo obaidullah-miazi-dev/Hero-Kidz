@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import RegisterForm from "@/components/auth/RegisterForm";
+import GoogleLogin from "@/components/auth/GoogleLogin";
 
 const Register = () => {
   return (
@@ -34,25 +35,6 @@ const Register = () => {
           </div>
 
           <RegisterForm />
-
-          <div className="divider">OR</div>
-
-          <div className="space-y-3">
-            <button className="btn btn-outline w-full gap-2 hover:bg-base-200 hover:text-base-content">
-              <FaGoogle className="text-red-500 text-xl" />
-              Sign up with Google
-            </button>
-          </div>
-
-          <p className="text-center text-sm text-gray-600">
-            Already have an account?{" "}
-            <Link
-              href="/login"
-              className="text-primary font-bold hover:underline"
-            >
-              Login
-            </Link>
-          </p>
         </div>
       </div>
     </div>

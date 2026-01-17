@@ -1,10 +1,15 @@
 "use client";
 import { postUser } from "@/actions/server/auth";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
+import GoogleLogin from "./GoogleLogin";
+import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 const RegisterForm = () => {
-  const router = useRouter();
+  // const router = useRouter();
+  const params = useSearchParams();
+  const callbackurl = params.get("callbackUrl") || "/";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,8 +28,15 @@ const RegisterForm = () => {
     e.preventDefault();
     const result = await postUser(formData);
     if (result.acknowledged) {
-      alert("Registration successfully,Please Login");
-      router.push("/login");
+      const result = await signIn("credentials", {
+        email: formData.email,
+        password: formData.password,
+        callbackUrl: callbackurl,
+      });
+      alert("Registration successfully");
+    }
+    else{
+      alert('something went wrong')
     }
   };
 
@@ -77,6 +89,22 @@ const RegisterForm = () => {
           Register
         </button>
       </form>
+
+      <div className="divider">OR</div>
+
+      <div className="space-y-3">
+        <GoogleLogin />
+      </div>
+
+      <p className="text-center text-sm text-gray-600">
+        Already have an account?{" "}
+        <Link
+          href={`/login?callbackUrl=${callbackurl}`}
+          className="text-primary font-bold hover:underline"
+        >
+          Login
+        </Link>
+      </p>
     </>
   );
 };

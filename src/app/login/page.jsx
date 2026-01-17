@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaGoogle, FaGithub } from "react-icons/fa";
 import LoginForm from "@/components/auth/LoginForm";
+import GoogleLogin from "@/components/auth/GoogleLogin";
 
 const Login = () => {
   return (
@@ -35,25 +35,6 @@ const Login = () => {
           </div>
 
           <LoginForm />
-
-          <div className="divider">OR</div>
-
-          <div className="space-y-3">
-            <button className="btn btn-outline w-full gap-2 hover:bg-base-200 hover:text-base-content">
-              <FaGoogle className="text-red-500 text-xl" />
-              Continue with Google
-            </button>
-          </div>
-
-          <p className="text-center text-sm text-gray-600">
-            Don&apos;t have an account?{" "}
-            <Link
-              href="/Register"
-              className="text-primary font-bold hover:underline"
-            >
-              Register
-            </Link>
-          </p>
         </div>
       </div>
     </div>

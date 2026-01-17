@@ -1,10 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import GoogleLogin from "./GoogleLogin";
+import Link from "next/link";
 
 const LoginForm = () => {
+  const params = useSearchParams();
   const router = useRouter();
+  const callbackurl = params.get("callbackUrl") || "/";
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -31,7 +35,7 @@ const LoginForm = () => {
       alert("Invalid Credentials");
     } else {
       alert("Logged In successfully");
-      router.push("/");
+      router.push(callbackurl);
     }
   };
 
@@ -73,6 +77,22 @@ const LoginForm = () => {
           Login
         </button>
       </form>
+
+      <div className="divider">OR</div>
+
+      <div className="space-y-3">
+        <GoogleLogin />
+      </div>
+
+      <p className="text-center text-sm text-gray-600">
+        Don&apos;t have an account?{" "}
+        <Link
+          href={`/Register?callbackUrl=${callbackurl}`}
+          className="text-primary font-bold hover:underline"
+        >
+          Register
+        </Link>
+      </p>
     </>
   );
 };
