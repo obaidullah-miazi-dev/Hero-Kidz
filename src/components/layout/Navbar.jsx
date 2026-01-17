@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import Navlinks from "../buttons/Navlinks";
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
+import AuthButton from "../buttons/AuthButton";
 
 const Navbar = () => {
   const nav = (
@@ -58,11 +59,7 @@ const Navbar = () => {
         <Link href={"/cart"} className="btn btn-primary text-white">
           <ShoppingCart />
         </Link>
-        <Link href={"/login"}>
-          <button className="btn btn-primary btn-outline hover:text-white">
-            Login
-          </button>
-        </Link>
+        <AuthButton />
       </div>
     </div>
   );

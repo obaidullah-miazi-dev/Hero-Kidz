@@ -1,7 +1,10 @@
-'use client'
+"use client";
 import React, { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -15,9 +18,21 @@ const LoginForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login Data:", formData);
+    const result = await signIn("credentials", {
+      email: formData.email,
+      password: formData.password,
+      redirect: false,
+    });
+
+    console.log(result);
+    if (!result.ok) {
+      alert("Invalid Credentials");
+    } else {
+      alert("Logged In successfully");
+      router.push("/");
+    }
   };
 
   return (

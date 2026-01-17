@@ -1,6 +1,7 @@
 import { Epilogue, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
+import NextAuthProvider from "@/provider/NextAuthProvider";
 
 const poppins = Poppins({
   weight: ["100", "200", "400", "500", "600", "800"],
@@ -48,13 +49,20 @@ const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body suppressHydrationWarning className={`${poppins.className} antialiased`}>
-        <header className="py-2 md:w-10/12 mx-auto  md:px-0">
-          <Navbar />
-        </header>
-        <main className="py-2 md:w-10/12 mx-auto px-5 md:px-0">{children}</main>
-      </body>
-    </html>
+    <NextAuthProvider>
+      <html lang="en">
+        <body
+          suppressHydrationWarning
+          className={`${poppins.className} antialiased`}
+        >
+          <header className="py-2 md:w-10/12 mx-auto  md:px-0">
+            <Navbar />
+          </header>
+          <main className="py-2 md:w-10/12 mx-auto px-5 md:px-0">
+            {children}
+          </main>
+        </body>
+      </html>
+    </NextAuthProvider>
   );
 }
