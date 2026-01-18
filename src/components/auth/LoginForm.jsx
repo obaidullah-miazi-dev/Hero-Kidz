@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import GoogleLogin from "./GoogleLogin";
 import Link from "next/link";
+import { toast } from "sonner";
 
 const LoginForm = () => {
   const params = useSearchParams();
@@ -32,9 +33,9 @@ const LoginForm = () => {
 
     console.log(result);
     if (!result.ok) {
-      alert("Invalid Credentials");
+      toast.error("Invalid Credentials");
     } else {
-      alert("Logged In successfully");
+      toast.success("Logged In successfully");
       router.push(callbackurl);
     }
   };

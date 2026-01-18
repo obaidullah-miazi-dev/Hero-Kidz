@@ -59,9 +59,13 @@ export const authOptions = {
           const dbUser = await dbConnect(collections.USERS).findOne({
             email: user?.email,
           });
-          ((token.role = dbUser?.role), (token.email = dbUser?.email));
+          ((token.role = dbUser?.role),
+            (token.email = dbUser?.email),
+            (token.name = dbUser?.name));
         } else {
-          ((token.role = user?.role), (token.email = user?.email));
+          ((token.role = user?.role),
+            (token.email = user?.email),
+            (token.name = user?.name));
         }
       }
       return token;

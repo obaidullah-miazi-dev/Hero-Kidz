@@ -3,7 +3,7 @@ import React from "react";
 const ProductDetailsSkeleton = () => {
     return (
         <div className="min-h-screen bg-base-100 py-8 lg:py-12">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div>
                 {/* Breadcrumbs Skeleton */}
                 <div className="flex gap-2 mb-8">
                     <div className="h-4 w-12 bg-base-300 rounded animate-pulse" />

@@ -2,6 +2,7 @@ import { Epilogue, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import NextAuthProvider from "@/provider/NextAuthProvider";
+import { Toaster } from "sonner";
 
 const poppins = Poppins({
   weight: ["100", "200", "400", "500", "600", "800"],
@@ -59,6 +60,7 @@ export default function RootLayout({ children }) {
             <Navbar />
           </header>
           <main className="py-2 md:w-10/12 mx-auto px-5 md:px-0">
+            <Toaster position="top-center" />
             {children}
           </main>
         </body>

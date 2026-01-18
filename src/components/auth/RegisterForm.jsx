@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import GoogleLogin from "./GoogleLogin";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
+import { toast } from "sonner";
 
 const RegisterForm = () => {
   // const router = useRouter();
@@ -33,10 +34,10 @@ const RegisterForm = () => {
         password: formData.password,
         callbackUrl: callbackurl,
       });
-      alert("Registration successfully");
+      toast.success("Registration successfully");
     }
     else{
-      alert('something went wrong')
+      toast.error('something went wrong')
     }
   };
 
