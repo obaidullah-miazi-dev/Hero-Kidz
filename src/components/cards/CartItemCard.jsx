@@ -1,10 +1,19 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { Trash2, Minus, Plus } from "lucide-react";
 import Link from "next/link";
+import { deleteCartItem } from "@/actions/server/cart";
+import { toast } from "sonner";
 
 const CartItemCard = ({ item }) => {
-  const { title, image, price, quantity, productId } = item;
+  const { title, image, price, quantity, productId, _id } = item;
+  const handleDelete = async (id) => {
+    const result = await deleteCartItem(id);
+    if (result) {
+      toast.success("Deleted Cart Item");
+    }
+  };
 
   return (
     <div className="card card-side bg-base-100 shadow-sm border border-base-200 hover:shadow-md transition-all duration-300 p-4 mb-4 group">
@@ -46,6 +55,7 @@ const CartItemCard = ({ item }) => {
 
           {/* Remove Button */}
           <button
+            onClick={() => handleDelete(_id)}
             className="btn btn-ghost btn-sm text-error hover:bg-error/10 btn-square rounded-lg transition-colors"
             title="Remove from cart"
           >
