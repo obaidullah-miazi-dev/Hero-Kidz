@@ -38,3 +38,14 @@ export const add2Cart = async ({ product, inc = true }) => {
     return { success: result.acknowledged };
   }
 };
+
+export const getCartData = async () => {
+  const user = await getServerSession(authOptions);
+  if (!user) {
+    return [];
+  }
+
+  const query = {email: user.email}
+  const result = await cartCollection.find(query).toArray()
+  return result
+};
