@@ -61,3 +61,22 @@ export const deleteCartItem = async (id) => {
     return { success: true };
   }
 };
+
+export const updateCartQuantity = async ({ productId, type }) => {
+  const user = await getServerSession(authOptions);
+  if (!user) return { success: false };
+
+  const query = { email: user.email, productId: productId };
+  const updateData = {
+    $inc: {
+      quantity: type === "plus" ? 1 : -1,
+    },
+  };
+
+  const result = await cartCollection.updateOne(query, updateData);
+  if (result.modifiedCount) {
+    revalidatePath("/cart");
+    return { success: true };
+  }
+  return { success: false };
+};
