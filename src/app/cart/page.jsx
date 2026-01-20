@@ -16,7 +16,7 @@ const CartPage = async () => {
   const total = subtotal + shipping;
 
   return (
-    <div className="min-h-screen bg-base-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-base-100 py-8">
       <div>
         <h1 className="text-3xl font-bold mb-8 flex items-center gap-3">
           <ShoppingBag className="text-primary" />

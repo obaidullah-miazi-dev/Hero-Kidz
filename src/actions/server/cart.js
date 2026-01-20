@@ -50,7 +50,11 @@ export const getCartData = cache(async () => {
 
   const query = { email: user.email };
   const result = await cartCollection.find(query).toArray();
-  return result;
+  return result.map((item) => ({
+    ...item,
+    _id: item._id.toString(),
+    productId: item.productId.toString(),
+  }));
 });
 
 export const deleteCartItem = async (id) => {

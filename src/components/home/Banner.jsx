@@ -73,10 +73,10 @@ const Banner = () => {
 
               <Image
                 src="/assets/hero.png"
-                width={600}
-                height={600}
+                width={500}
+                height={400}
                 alt="Happy Kid Hero"
-                className="object-contain relative z-10 drop-shadow-2xl"
+                className="object-contain relative z-10"
                 priority
               />
 
