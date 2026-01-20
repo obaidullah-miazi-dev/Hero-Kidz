@@ -1,13 +1,34 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Trash2, Minus, Plus } from "lucide-react";
 import Link from "next/link";
-import { deleteCartItem } from "@/actions/server/cart";
+import { deleteCartItem, updateCartQuantity } from "@/actions/server/cart";
 import { toast } from "sonner";
 
 const CartItemCard = ({ item }) => {
   const { title, image, price, quantity, productId, _id } = item;
+  const [isPending, startTransition] = React.useTransition();
+
+  const handleIncrease = () => {
+    startTransition(async () => {
+      const res = await updateCartQuantity({ productId, type: "plus" });
+      if (res.success) {
+        toast.success("Increased Quantity");
+      }
+    });
+  };
+
+  const handleDecrease = () => {
+    if (quantity <= 1) return;
+    startTransition(async () => {
+      const res = await updateCartQuantity({ productId, type: "minus" });
+      if (res.success) {
+        toast.success("Decreased Quantity");
+      }
+    });
+  };
+
   const handleDelete = async (id) => {
     const result = await deleteCartItem(id);
     if (result) {
@@ -42,13 +63,21 @@ const CartItemCard = ({ item }) => {
         <div className="flex items-center gap-3">
           {/* Quantity Controls */}
           <div className="join border border-base-300 rounded-lg">
-            <button className="join-item btn btn-sm btn-ghost px-2 hover:bg-base-200">
+            <button
+              onClick={handleDecrease}
+              disabled={quantity <= 1 || isPending}
+              className="join-item btn btn-sm btn-ghost px-2 hover:bg-base-200 disabled:bg-base-100 disabled:text-base-content/30"
+            >
               <Minus size={14} />
             </button>
-            <span className="join-item btn btn-sm btn-ghost px-3 pointer-events-none bg-base-100 font-medium">
-              {quantity}
+            <span className="join-item btn btn-sm btn-ghost px-3 pointer-events-none bg-base-100 font-medium min-w-[40px]">
+              {isPending ? <span className="loading loading-spinner loading-xs"></span> : quantity}
             </span>
-            <button className="join-item btn btn-sm btn-ghost px-2 hover:bg-base-200">
+            <button
+              onClick={handleIncrease}
+              disabled={isPending}
+              className="join-item btn btn-sm btn-ghost px-2 hover:bg-base-200 disabled:bg-base-100 disabled:text-base-content/30"
+            >
               <Plus size={14} />
             </button>
           </div>
