@@ -54,6 +54,29 @@ const CartPage = async () => {
                   <h2 className="card-title text-xl mb-4">Order Summary</h2>
 
                   <div className="space-y-3">
+                    {/* Product Details in Summary */}
+                    <div className="max-h-60 overflow-y-auto space-y-2 mb-4 pr-1 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+                      {cartItems.map((item) => (
+                        <div
+                          key={item._id.toString()}
+                          className="flex justify-between text-sm"
+                        >
+                          <div className="flex-1 pr-2">
+                            <span className="text-base-content/80 line-clamp-1" title={item.title}>
+                              {item.title}
+                            </span>
+                            <span className="text-xs text-base-content/50">
+                              Qty: {item.quantity}
+                            </span>
+                          </div>
+                          <span className="font-medium text-base-content/80">
+                            ৳{item.price * item.quantity}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="divider my-2"></div>
+
                     <div className="flex justify-between text-base-content/70">
                       <span>Subtotal</span>
                       <span className="font-medium text-base-content">৳{subtotal}</span>
